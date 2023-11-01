@@ -6,7 +6,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.NavHostController
 import com.androiddev.mytodoapp.navigation.destinations.listComposable
 import com.androiddev.mytodoapp.navigation.destinations.taskComposable
-import com.androiddev.mytodoapp.ui.theme.viewmodels.SharedViewModel
+import com.androiddev.mytodoapp.ui.viewmodels.SharedViewModel
 import com.androiddev.mytodoapp.util.Constants.LIST_SCREEN
 
 @Composable

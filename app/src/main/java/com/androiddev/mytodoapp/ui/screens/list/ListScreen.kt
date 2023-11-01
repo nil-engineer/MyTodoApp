@@ -14,7 +14,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import com.androiddev.mytodoapp.R
-import com.androiddev.mytodoapp.ui.theme.viewmodels.SharedViewModel
+import com.androiddev.mytodoapp.ui.viewmodels.SharedViewModel
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)

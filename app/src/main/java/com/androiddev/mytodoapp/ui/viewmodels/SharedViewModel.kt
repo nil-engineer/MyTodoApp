@@ -1,4 +1,4 @@
-package com.androiddev.mytodoapp.ui.theme.viewmodels
+package com.androiddev.mytodoapp.ui.viewmodels
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf

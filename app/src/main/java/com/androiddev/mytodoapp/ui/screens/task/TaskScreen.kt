@@ -10,7 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
 //import com.androiddev.mytodoapp.data.models.Priority
 import com.androiddev.mytodoapp.data.models.TodoTask
-import com.androiddev.mytodoapp.ui.theme.viewmodels.SharedViewModel
+import com.androiddev.mytodoapp.ui.viewmodels.SharedViewModel
 import com.androiddev.mytodoapp.util.Action
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -74,5 +74,7 @@ fun displayToast(context: Context) {
         Toast.LENGTH_SHORT
     ).show()
 }
+
+
 
 
