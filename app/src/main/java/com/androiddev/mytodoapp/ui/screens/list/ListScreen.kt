@@ -15,15 +15,22 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import com.androiddev.mytodoapp.R
 import com.androiddev.mytodoapp.ui.viewmodels.SharedViewModel
+import com.androiddev.mytodoapp.util.Action
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ListScreen(navigateToTaskScreen: (taskId: Int) -> Unit,
-               sharedViewModel: SharedViewModel) {
-    LaunchedEffect(key1 = true){
-//        Log.d("list", "ListScreen: ")
-        sharedViewModel.getAllTasks()
+fun ListScreen(
+    action: Action, navigateToTaskScreen: (taskId: Int) -> Unit,
+    sharedViewModel: SharedViewModel
+) {
+//    LaunchedEffect(key1 = true){
+////        Log.d("list", "ListScreen: ")
+//        sharedViewModel.getAllTasks()
+//    }
+
+    LaunchedEffect(key1 = action) {
+        sharedViewModel.handleDatabaseActions(action = action)
     }
     val allTasks by sharedViewModel.allTasks.collectAsState()
     Scaffold(
@@ -31,8 +38,10 @@ fun ListScreen(navigateToTaskScreen: (taskId: Int) -> Unit,
             ListAppBar()
         },
         content = {
-            ListContent(tasks = allTasks,
-                navigateToTaskScreen = navigateToTaskScreen)
+            ListContent(
+                tasks = allTasks,
+                navigateToTaskScreen = navigateToTaskScreen
+            )
         },
         floatingActionButton = {
             ListFab(onFabClicked = navigateToTaskScreen)
