@@ -12,6 +12,7 @@ import com.androiddev.mytodoapp.util.Action
 import com.androiddev.mytodoapp.util.Constants.MAX_TITLE_LENGTH
 import com.androiddev.mytodoapp.util.RequestState
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -57,6 +58,18 @@ class SharedViewModel @Inject constructor(
                 _selectedTask.value = task
             }
         }
+    }
+
+    private fun addTask() {
+        viewModelScope.launch(Dispatchers.IO) {
+            val toDoTask = TodoTask(
+                title = title,
+                description = description,
+//                priority = priority
+            )
+            repository.addTask(todoTask = toDoTask)
+        }
+//        searchAppBarState = SearchAppBarState.CLOSED
     }
 
     fun updateTaskFields(selectedTask: TodoTask?) {
