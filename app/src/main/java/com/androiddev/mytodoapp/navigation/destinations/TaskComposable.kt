@@ -1,22 +1,53 @@
 package com.androiddev.mytodoapp.navigation.destinations
 
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.slideInHorizontally
+import androidx.compose.runtime.LaunchedEffect
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import com.androiddev.mytodoapp.ui.screens.task.TaskScreen
+import com.androiddev.mytodoapp.ui.theme.viewmodels.SharedViewModel
 import com.androiddev.mytodoapp.util.Action
 import com.androiddev.mytodoapp.util.Constants.LIST_ARGUMENT_KEY
+import com.androiddev.mytodoapp.util.Constants.TASK_ARGUMENT_KEY
 import com.androiddev.mytodoapp.util.Constants.TASK_SCREEN
 
 fun NavGraphBuilder.taskComposable(
+    sharedViewModel: SharedViewModel,
     navigateToListScreen: (Action) -> Unit
 ){
     composable(
         route = TASK_SCREEN,
         arguments = listOf(navArgument(LIST_ARGUMENT_KEY){
             type = NavType.IntType
-        })
-    ){
+        }) ,
+        enterTransition = {
+            slideInHorizontally(
+                initialOffsetX = { fullWidth -> -fullWidth },
+                animationSpec = tween(
+                    durationMillis = 300
+                )
+            )
+        }
+    ){ navBackStackEntry ->
+            val taskId = navBackStackEntry.arguments!!.getInt(TASK_ARGUMENT_KEY)
+            LaunchedEffect(key1 = taskId) {
+                sharedViewModel.getSelectedTask(taskId = taskId)
+            }
 
+            val selectedTask by sharedViewModel.selectedTask.collectAsState()
+            LaunchedEffect(key1 = selectedTask) {
+                if (selectedTask != null || taskId == -1) {
+                    sharedViewModel.updateTaskFields(selectedTask = selectedTask)
+                }
+            }
+
+            TaskScreen(
+                selectedTask = selectedTask,
+                sharedViewModel = sharedViewModel,
+                navigateToListScreen = navigateToListScreen
+            )
     }
 }

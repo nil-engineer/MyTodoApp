@@ -6,9 +6,9 @@ import com.androiddev.mytodoapp.ui.theme.LowPriorityColor
 import com.androiddev.mytodoapp.ui.theme.MediumPriorityColor
 import com.androiddev.mytodoapp.ui.theme.NonePriorityColor
 
-enum class Priority(val color: Color) {
-    High(HighPriorityColor),
-    MEDIUM(MediumPriorityColor),
-    LOW(LowPriorityColor),
-    NONE(NonePriorityColor)
-}
+//enum class Priority(val color: Color) {
+//    High(HighPriorityColor),
+//    MEDIUM(MediumPriorityColor),
+//    LOW(LowPriorityColor),
+//    NONE(NonePriorityColor)
+//}
