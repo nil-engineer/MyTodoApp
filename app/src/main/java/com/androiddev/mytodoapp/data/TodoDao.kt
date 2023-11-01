@@ -18,10 +18,10 @@ interface TodoDao {
     fun getSelectedTask(taskId: Int): Flow<TodoTask>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun addTask(toDoTask: TodoTask)
+    suspend fun addTask(todoTask: TodoTask)
 
     @Update
-    suspend fun updateTask(toDoTask: TodoTask)
+    suspend fun updateTask(todoTask: TodoTask)
 
     @Delete
     suspend fun deleteTask(todoTask: TodoTask)
