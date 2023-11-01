@@ -9,7 +9,7 @@ import com.androiddev.mytodoapp.navigation.destinations.taskComposable
 import com.androiddev.mytodoapp.util.Constants.LIST_SCREEN
 
 @Composable
-fun setupNavigation(
+fun SetupNavigation(
     navController: NavHostController
 ) {
     val screen = remember(navController) {
