@@ -23,7 +23,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.androiddev.mytodoapp.data.models.Priority
+//import com.androiddev.mytodoapp.data.models.Priority
 import com.androiddev.mytodoapp.data.models.TodoTask
 import com.androiddev.mytodoapp.util.RequestState
 
@@ -86,12 +86,12 @@ fun TaskItem(
                         .weight(1f),
                     contentAlignment = Alignment.TopEnd
                 ) {
-                    Canvas(
-                        modifier = Modifier.width(16.dp)
-                            .height(16.dp)
-                    ) {
-                        drawCircle(color = todoTask.priority.color)
-                    }
+//                    Canvas(
+//                        modifier = Modifier.width(16.dp)
+//                            .height(16.dp)
+//                    ) {
+////                        drawCircle(color = todoTask.priority.color)
+//                    }
                 }
             }
             Text(
@@ -109,6 +109,6 @@ fun TaskItem(
 @Composable
 @Preview
 fun TaskItemPreview() {
-    TaskItem(todoTask = TodoTask(0, "Title", "some random text", Priority.High),
+    TaskItem(todoTask = TodoTask(0, "Title", "some random text"),
         navigateToTaskScreen = {})
 }

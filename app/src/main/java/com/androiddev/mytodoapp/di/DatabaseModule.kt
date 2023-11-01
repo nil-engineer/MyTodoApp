@@ -7,6 +7,7 @@ import com.androiddev.mytodoapp.util.Constants.DATABASE_NAME
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ViewModelComponent
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
@@ -15,7 +16,7 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object DatabaseModule {
 
-    @Singleton
+//    @Singleton
     @Provides
     fun provideDatabase(
         @ApplicationContext context: Context
@@ -25,7 +26,7 @@ object DatabaseModule {
         DATABASE_NAME,
     ).build()
 
-    @Singleton
+//    @Singleton
     @Provides
     fun provideDao(database: TodoDatabase) = database.todoDao()
 }
