@@ -2,13 +2,24 @@ package com.androiddev.mytodoapp.data.repositories
 
 import com.androiddev.mytodoapp.data.TodoDao
 import com.androiddev.mytodoapp.data.models.TodoTask
+import dagger.hilt.android.scopes.ViewModelScoped
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
-class TodoRepositoryImpl  @Inject constructor(private val todoDao: TodoDao): TodoRepository{
-    val getAllTasks: Flow<List<TodoTask>> = todoDao.getAllTasks()
-    val sortByLowPriority: Flow<List<TodoTask>> = todoDao.sortByLowPriority()
-    val sortByHighPriority: Flow<List<TodoTask>> = todoDao.sortByHighPriority()
+@ViewModelScoped
+class TodoRepositoryImpl @Inject constructor(private val todoDao: TodoDao) : TodoRepository {
+    override fun getAllTasks(): Flow<List<TodoTask>> {
+        return todoDao.getAllTasks()
+    }
+
+    override fun sortByLowPriority(): Flow<List<TodoTask>> {
+        return todoDao.sortByLowPriority()
+    }
+
+    override fun sortByHighPriority(): Flow<List<TodoTask>> {
+        return todoDao.sortByHighPriority()
+    }
+
     override fun getSelectedTask(taskId: Int): Flow<TodoTask> {
         return todoDao.getSelectedTask(taskId)
     }
