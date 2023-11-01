@@ -1,4 +1,4 @@
-package com.androiddev.mytodoapp.ui.theme.screens.list
+package com.androiddev.mytodoapp.ui.screens.list
 
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.Box
