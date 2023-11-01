@@ -6,19 +6,18 @@ import dagger.hilt.android.scopes.ViewModelScoped
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
-@ViewModelScoped
 class TodoRepositoryImpl @Inject constructor(private val todoDao: TodoDao) : TodoRepository {
     override fun getAllTasks(): Flow<List<TodoTask>> {
         return todoDao.getAllTasks()
     }
 
-    override fun sortByLowPriority(): Flow<List<TodoTask>> {
-        return todoDao.sortByLowPriority()
-    }
-
-    override fun sortByHighPriority(): Flow<List<TodoTask>> {
-        return todoDao.sortByHighPriority()
-    }
+//    override fun sortByLowPriority(): Flow<List<TodoTask>> {
+//        return todoDao.sortByLowPriority()
+//    }
+//
+//    override fun sortByHighPriority(): Flow<List<TodoTask>> {
+//        return todoDao.sortByHighPriority()
+//    }
 
     override fun getSelectedTask(taskId: Int): Flow<TodoTask> {
         return todoDao.getSelectedTask(taskId)

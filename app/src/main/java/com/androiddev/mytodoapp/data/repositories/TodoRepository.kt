@@ -7,9 +7,9 @@ interface TodoRepository {
 
     fun getAllTasks(): Flow<List<TodoTask>>
 
-    fun sortByLowPriority(): Flow<List<TodoTask>>
-
-    fun sortByHighPriority(): Flow<List<TodoTask>>
+//    fun sortByLowPriority(): Flow<List<TodoTask>>
+//
+//    fun sortByHighPriority(): Flow<List<TodoTask>>
     fun getSelectedTask(taskId: Int): Flow<TodoTask>
 
     suspend fun addTask(todoTask: TodoTask)
