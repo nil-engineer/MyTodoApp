@@ -14,25 +14,32 @@ import com.androiddev.mytodoapp.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ListScreen(navigateToTaskScreen: (Int) -> Unit) {
+fun ListScreen(navigateToTaskScreen: (taskId: Int) -> Unit) {
     Scaffold(
-        content = { },
+        topBar = {
+            ListAppBar()
+        },
+        content = {
+            ListContent()
+        },
         floatingActionButton = {
-            ListFab(navigateToTaskScreen = navigateToTaskScreen)
+            ListFab(onFabClicked = navigateToTaskScreen)
         }
     )
 }
 
 @Composable
 fun ListFab(
-    navigateToTaskScreen: (Int) -> Unit
-){
+    onFabClicked: (taskId: Int) -> Unit
+) {
     FloatingActionButton(onClick = {
-        navigateToTaskScreen(-1)
-    }){
-        Icon(imageVector = Icons.Filled.Add,
-            contentDescription =  stringResource(id = R.string.add_button),
-            tint = Color.White)
+        onFabClicked(-1)
+    }) {
+        Icon(
+            imageVector = Icons.Filled.Add,
+            contentDescription = stringResource(id = R.string.add_button),
+            tint = Color.White
+        )
     }
 }
 
