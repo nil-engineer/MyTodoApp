@@ -103,4 +103,27 @@ class SharedViewModel @Inject constructor(
     fun validateFields(): Boolean {
         return title.isNotEmpty() && description.isNotEmpty()
     }
+
+    fun handleDatabaseActions(action: Action) {
+        when (action) {
+            Action.ADD -> {
+                addTask()
+            }
+//            Action.UPDATE -> {
+//                updateTask()
+//            }
+//            Action.DELETE -> {
+//                deleteTask()
+//            }
+//            Action.DELETE_ALL -> {
+//                deleteAllTasks()
+//            }
+            Action.UNDO -> {
+                addTask()
+            }
+            else -> {
+
+            }
+        }
+    }
 }

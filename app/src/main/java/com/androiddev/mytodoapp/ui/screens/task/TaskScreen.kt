@@ -14,7 +14,7 @@ import com.androiddev.mytodoapp.ui.theme.viewmodels.SharedViewModel
 import com.androiddev.mytodoapp.util.Action
 
 @OptIn(ExperimentalMaterial3Api::class)
-@SuppressLint("UnusedMaterialScaffoldPaddingParameter", "UnusedMaterial3ScaffoldPaddingParameter")
+@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun TaskScreen(
     selectedTask: TodoTask?,
@@ -74,3 +74,5 @@ fun displayToast(context: Context) {
         Toast.LENGTH_SHORT
     ).show()
 }
+
+
