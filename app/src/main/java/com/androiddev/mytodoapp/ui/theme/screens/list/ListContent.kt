@@ -25,13 +25,25 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.androiddev.mytodoapp.data.models.Priority
 import com.androiddev.mytodoapp.data.models.TodoTask
+import com.androiddev.mytodoapp.util.RequestState
 
 
 @Composable
 fun ListContent(
-    tasks: List<TodoTask>,
+    tasks: RequestState<List<TodoTask>>,
     navigateToTaskScreen: (taskId: Int) -> Unit
 ) {
+    if(tasks is RequestState.Success){
+        DisplayTasks(tasks = tasks.data,
+            navigateToTaskScreen = navigateToTaskScreen)
+    }
+}
+
+@Composable
+fun DisplayTasks(
+    tasks: List<TodoTask>,
+    navigateToTaskScreen: (taskId: Int) -> Unit
+){
     LazyColumn {
         items(
             items = tasks,
