@@ -27,6 +27,7 @@ import com.androiddev.mytodoapp.components.DisplayAlertDialog
 import com.androiddev.mytodoapp.data.models.TodoTask
 import com.androiddev.mytodoapp.util.Action
 
+@Composable
 fun TaskAppBar(
     selectedTask: TodoTask?,
     navigateToListScreen: (Action) -> Unit
@@ -201,7 +202,7 @@ private fun ExistingTaskAppBarPreview() {
     ExistingTaskAppBar(
         selectedTask = TodoTask(
             id = 0,
-            title = "Stevdza-San",
+            title = "title",
             description = "Some random text",
 //            priority = Priority.LOW
         ),
