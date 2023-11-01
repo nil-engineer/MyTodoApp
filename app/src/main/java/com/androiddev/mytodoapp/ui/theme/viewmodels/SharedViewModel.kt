@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.androiddev.mytodoapp.data.models.TodoTask
 import com.androiddev.mytodoapp.data.repositories.TodoRepository
+import com.androiddev.mytodoapp.util.Action
 import com.androiddev.mytodoapp.util.Constants.MAX_TITLE_LENGTH
 import com.androiddev.mytodoapp.util.RequestState
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -31,6 +32,9 @@ class SharedViewModel @Inject constructor(
     var title by mutableStateOf("")
         private set
     var description by mutableStateOf("")
+        private set
+
+    var action by mutableStateOf(Action.NO_ACTION)
         private set
     fun getAllTasks() {
         _allTasks.value = RequestState.Loading
@@ -77,6 +81,10 @@ class SharedViewModel @Inject constructor(
 
     fun updateDescription(newDescription: String) {
         description = newDescription
+    }
+
+    fun updateAction(newAction: Action) {
+        action = newAction
     }
 
     fun validateFields(): Boolean {
