@@ -16,7 +16,7 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object DatabaseModule {
 
-//    @Singleton
+    @Singleton
     @Provides
     fun provideDatabase(
         @ApplicationContext context: Context
@@ -26,7 +26,7 @@ object DatabaseModule {
         DATABASE_NAME,
     ).build()
 
-//    @Singleton
+    @Singleton
     @Provides
     fun provideDao(database: TodoDatabase) = database.todoDao()
 }
