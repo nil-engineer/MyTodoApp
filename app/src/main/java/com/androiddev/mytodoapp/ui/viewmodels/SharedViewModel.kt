@@ -76,6 +76,17 @@ class SharedViewModel @Inject constructor(
 //        searchAppBarState = SearchAppBarState.CLOSED
     }
 
+    private fun updateTask(){
+        viewModelScope.launch(Dispatchers.IO) {
+            val todoTask = TodoTask(
+                id = id,
+                title = title,
+                description = description
+            )
+            repository.updateTask(todoTask)
+        }
+    }
+
     fun updateTaskFields(selectedTask: TodoTask?) {
         if (selectedTask != null) {
             id = selectedTask.id
@@ -113,9 +124,9 @@ class SharedViewModel @Inject constructor(
             Action.ADD -> {
                 addTask()
             }
-//            Action.UPDATE -> {
-//                updateTask()
-//            }
+            Action.UPDATE -> {
+                updateTask()
+            }
 //            Action.DELETE -> {
 //                deleteTask()
 //            }
@@ -123,7 +134,7 @@ class SharedViewModel @Inject constructor(
 //                deleteAllTasks()
 //            }
             Action.UNDO -> {
-                addTask()
+//                addTask()
             }
             else -> {
 
