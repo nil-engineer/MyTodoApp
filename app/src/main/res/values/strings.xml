@@ -12,4 +12,7 @@
     <string name="yes">Yes</string>
     <string name="title">Title</string>
     <string name="description">Description</string>
+    <string name="delete_all_action">Delete All</string>
+    <string name="delete_all_tasks">Remove All Tasks?</string>
+    <string name="delete_all_tasks_confirmation">Are you sure you want to remove all Tasks? There is no going back after this action.</string>
 </resources>

@@ -46,14 +46,14 @@ fun ListScreen(
     DisplaySnackBar(
         snackbarHostState = snackbarHostState,
         handleDatabaseActions = { sharedViewModel.handleDatabaseActions(action = action) },
-        onUndoClicked = {sharedViewModel.updateAction(newAction = it)},
+        onUndoClicked = { sharedViewModel.updateAction(newAction = it) },
         taskTitle = sharedViewModel.title,
         action = action
     )
     Scaffold(
         snackbarHost = { SnackbarHost(snackbarHostState) },
         topBar = {
-            ListAppBar()
+            ListAppBar(sharedViewModel = sharedViewModel)
         },
         content = {
             ListContent(
@@ -96,14 +96,24 @@ fun DisplaySnackBar(
         if (action != Action.NO_ACTION) {
             scope.launch {
                 val snackBarResult = snackbarHostState.showSnackbar(
-                    message = "${action.name}: $taskTitle",
+                    message = setMessage(action = action, taskTitle),
                     actionLabel = setActionLabell(action = action)
                 )
-                undoDeletedTask(action = action,
+                undoDeletedTask(
+                    action = action,
                     snackBarResult = snackBarResult,
-                    onUndoClicked = onUndoClicked)
+                    onUndoClicked = onUndoClicked
+                )
             }
         }
+    }
+
+}
+
+private fun setMessage(action: Action, taskTitle: String): String {
+    return when (action) {
+        Action.DELETE_ALL -> "All tasks Removed"
+        else -> "${action.name}: $taskTitle"
     }
 }
 
