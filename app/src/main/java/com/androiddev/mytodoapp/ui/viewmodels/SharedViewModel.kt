@@ -37,6 +37,10 @@ class SharedViewModel @Inject constructor(
 
     var action by mutableStateOf(Action.NO_ACTION)
         private set
+
+    init{
+        getAllTasks()
+    }
     fun getAllTasks() {
         _allTasks.value = RequestState.Loading
         try{
