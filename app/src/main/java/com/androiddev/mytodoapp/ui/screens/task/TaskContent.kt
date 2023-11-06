@@ -22,6 +22,7 @@ import com.androiddev.mytodoapp.R
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TaskContent(
+    modifier: Modifier,
     title: String,
     onTitleChange: (String) -> Unit,
     description: String,
@@ -66,6 +67,7 @@ fun TaskContent(
 @Preview
 private fun TaskContentPreview() {
     TaskContent(
+        modifier = Modifier.padding(10.dp),
         title = "",
         onTitleChange = {},
         description = "",
