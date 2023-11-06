@@ -7,15 +7,21 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCompositionContext
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import com.androiddev.mytodoapp.R
 import com.androiddev.mytodoapp.ui.viewmodels.SharedViewModel
 import com.androiddev.mytodoapp.util.Action
+import kotlinx.coroutines.launch
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
@@ -33,7 +39,17 @@ fun ListScreen(
         sharedViewModel.handleDatabaseActions(action = action)
     }
     val allTasks by sharedViewModel.allTasks.collectAsState()
+    val snackbarHostState = remember { SnackbarHostState() }
+
+
+    DisplaySnackBar(
+        snackbarHostState = snackbarHostState,
+        handleDatabaseActions = { sharedViewModel.handleDatabaseActions(action = action) },
+        taskTitle = sharedViewModel.title,
+        action = action
+    )
     Scaffold(
+        snackbarHost = { SnackbarHost(snackbarHostState) },
         topBar = {
             ListAppBar()
         },
@@ -64,8 +80,23 @@ fun ListFab(
     }
 }
 
-//@Composable
-//@Preview
-//private fun ListScreenPreview() {
-//    ListScreen(navigateToTaskScreen = {})
-//}
+@Composable
+fun DisplaySnackBar(
+    snackbarHostState: SnackbarHostState,
+    handleDatabaseActions: () -> Unit,
+    taskTitle: String,
+    action: Action
+) {
+    handleDatabaseActions()
+    val scope = rememberCoroutineScope()
+    LaunchedEffect(key1 = action) {
+        if (action != Action.NO_ACTION) {
+            scope.launch {
+                val snackBarResult = snackbarHostState.showSnackbar(
+                    message = "${action.name}: $taskTitle",
+                    actionLabel = "Ok"
+                )
+            }
+        }
+    }
+}
